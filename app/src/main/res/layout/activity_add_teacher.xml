@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+
+
+    <!-- Champ pour le nom -->
+    <EditText
+        android:id="@+id/etNom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom" />
+
+    <!-- Champ pour le prénom -->
+    <EditText
+        android:id="@+id/etPrenom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Prénom" />
+
+    <!-- Champ pour la matière -->
+    <EditText
+        android:id="@+id/etMatiere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Matière" />
+
+    <!-- Champ pour la filière -->
+    <EditText
+        android:id="@+id/etFiliere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Filière" />
+
+    <!-- Champ pour la date d'embauche -->
+    <EditText
+        android:id="@+id/etDateEmbauche"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date d'embauche"
+        android:inputType="date" />
+
+    <!-- Bouton de soumission -->
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ajouter Enseignant" />
+</LinearLayout>

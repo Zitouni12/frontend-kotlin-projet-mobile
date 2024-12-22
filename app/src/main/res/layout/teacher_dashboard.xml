@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/welcomeTeacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome Teacher!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/btnViewClasses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View My Classes"
+        android:layout_below="@id/welcomeTeacher"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btnLogoutTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp" />
+</RelativeLayout>

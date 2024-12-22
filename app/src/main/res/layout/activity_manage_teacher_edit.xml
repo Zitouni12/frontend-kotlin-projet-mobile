@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etNom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etPrenom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Prénom"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etDateEmbauche"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date d'embauche"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/etMatiere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Matière"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etFiliere"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Filière"
+        android:inputType="text" />
+
+
+
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enregistrer"
+        android:layout_gravity="center" />
+
+</LinearLayout>

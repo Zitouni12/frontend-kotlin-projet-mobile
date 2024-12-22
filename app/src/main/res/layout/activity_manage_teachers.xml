@@ -1,0 +1,20 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Bouton pour ajouter un enseignant -->
+    <Button
+        android:id="@+id/btnAddTeacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Teacher"
+        android:layout_margin="16dp" />
+
+    <!-- RecyclerView pour afficher les enseignants -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTeachers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

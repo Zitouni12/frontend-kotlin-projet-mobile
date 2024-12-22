@@ -1,0 +1,87 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp"
+    tools:context=".activities.TeacherAdapter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Nom et Prénom -->
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom Prénom"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Date d'Embauche -->
+        <TextView
+            android:id="@+id/txtDateEmbauche"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date Embauche"
+            android:textSize="14sp"
+            android:textColor="#666"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Matière -->
+        <TextView
+            android:id="@+id/txtMatiere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matière"
+            android:textSize="14sp"
+            android:textColor="#666"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Filière -->
+        <TextView
+            android:id="@+id/txtFiliere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filière"
+            android:textSize="14sp"
+            android:textColor="#666"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Boutons d'édition et suppression -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <!-- Bouton Editer -->
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Editer"
+                android:textColor="#00796B"
+                android:backgroundTint="#E0F2F1"
+                android:layout_marginEnd="8dp"/>
+
+            <!-- Bouton Supprimer -->
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Supprimer"
+                android:textColor="#D32F2F"
+                android:backgroundTint="#FFEBEE"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

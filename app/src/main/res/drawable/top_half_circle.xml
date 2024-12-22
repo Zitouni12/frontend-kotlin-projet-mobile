@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#26D07C" />
+    <!-- Le coin arrondi en bas pour faire un demi-cercle -->
+    <corners android:bottomLeftRadius="360dp" android:bottomRightRadius="360dp" />
+</shape>
