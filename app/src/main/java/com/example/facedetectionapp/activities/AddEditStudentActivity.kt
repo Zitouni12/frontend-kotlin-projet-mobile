@@ -41,14 +41,6 @@ class AddEditStudentActivity : AppCompatActivity() {
 
     private var selectedImageUri: Uri? = null
 
-    private fun checkPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 101)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_student)
@@ -101,15 +93,6 @@ class AddEditStudentActivity : AppCompatActivity() {
     }
 
     private fun saveStudent() {
-        //if (selectedImageUri == null) {
-           // Toast.makeText(this, "Please choose an image", Toast.LENGTH_SHORT).show()
-           // return
-
-       // }
-
-
-
-
         val studentId = etStudentID.text.toString().trim()
         val firstName = etFirstName.text.toString().trim()
         val lastName = etLastName.text.toString().trim()
@@ -128,39 +111,53 @@ class AddEditStudentActivity : AppCompatActivity() {
         val birthDatePart = RequestBody.create("text/plain".toMediaTypeOrNull(), birthDate)
         val statusPart = RequestBody.create("text/plain".toMediaTypeOrNull(), status)
 
-        // Convert image Uri to MultipartBody.Part
-        val filePath = FileUtils.getPath(this, selectedImageUri!!)
-        val file = File(filePath)
+        // If image is selected, prepare it
+        var imagePart: MultipartBody.Part? = null
+        if (selectedImageUri != null) {
+            val filePath = FileUtils.getPath(this, selectedImageUri!!)
+            val file = File(filePath)
 
-        if (!file.exists()) {
-            Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show()
-            return
+            if (!file.exists()) {
+                Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            // Compress the image before uploading
+            val compressedFile = filePath?.let { compressImage(it) }
+
+            if (compressedFile == null) {
+                Toast.makeText(this, "Error compressing the image", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), compressedFile)
+            imagePart = MultipartBody.Part.createFormData("image", compressedFile.name, requestFile)
         }
 
-        /// Compress the image before uploading
-        val compressedFile = filePath?.let { compressImage(it) }
+        // Check if the studentId is being edited or newly created
+        val studentIdFromIntent = intent.getIntExtra("studentId", -1)
+        val call: Call<StudentResponse>
 
-        if (compressedFile == null) {
-            Toast.makeText(this, "Error compressing the image", Toast.LENGTH_SHORT).show()
-            return
+        if (studentIdFromIntent != -1) {
+            // Update existing student
+            call = RetrofitClient.instance.create(ApiService::class.java).updateStudent(
+                studentIdFromIntent, studentIdPart, firstNamePart, lastNamePart, birthDatePart, statusPart, imagePart
+            )
+        } else {
+            // Add new student
+            call = RetrofitClient.instance.create(ApiService::class.java).addStudent(
+                studentIdPart, firstNamePart, lastNamePart, birthDatePart, statusPart, imagePart
+            )
         }
 
-
-        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), compressedFile)
-        val imagePart = MultipartBody.Part.createFormData("image", compressedFile.name, requestFile)
-
-        // Call API with Retrofit
-        val call = RetrofitClient.instance.create(ApiService::class.java).addStudent(
-            studentIdPart, firstNamePart, lastNamePart, birthDatePart, statusPart, imagePart
-        )
-
+        // Envoi de la requête API
         call.enqueue(object : Callback<StudentResponse> {
             override fun onResponse(call: Call<StudentResponse>, response: Response<StudentResponse>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@AddEditStudentActivity, "Student added successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddEditStudentActivity, "Student saved successfully", Toast.LENGTH_SHORT).show()
                     finish() // Go back to previous activity
                 } else {
-                    Toast.makeText(this@AddEditStudentActivity, "Failed to add student", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AddEditStudentActivity, "Failed to save student", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -218,5 +215,4 @@ class AddEditStudentActivity : AppCompatActivity() {
 
         return compressedFile
     }
-
 }

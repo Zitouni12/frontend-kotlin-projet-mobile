@@ -20,8 +20,8 @@ class ManageTeacherEditActivity : AppCompatActivity() {
     private lateinit var etDateEmbauche: EditText
     private lateinit var etMatiere: EditText
     private lateinit var etFiliere: EditText
-    private lateinit var etUsername: EditText
-    private lateinit var etPassword: EditText
+    //private lateinit var etUsername: EditText
+    //private lateinit var etPassword: EditText
     private lateinit var etRole: EditText
     private lateinit var btnSave: Button
 
@@ -54,7 +54,7 @@ class ManageTeacherEditActivity : AppCompatActivity() {
             val matiere = etMatiere.text.toString()
             val filiere = etFiliere.text.toString()
 
-            val role = etRole.text.toString()
+           // val role = etRole.text.toString()
 
 
 

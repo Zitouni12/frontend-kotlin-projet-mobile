@@ -58,12 +58,12 @@ interface ApiService {
     @Multipart
     @POST("student/")
     fun addStudent(
-        @Part("studentId") studentId: RequestBody,
-        @Part("firstName") firstName: RequestBody,
-        @Part("lastName") lastName: RequestBody,
-        @Part("birthDate") birthDate: RequestBody,
+        @Part("student_id") studentId: RequestBody,  // Changer "studentId" en "student_id"
+        @Part("first_name") firstName: RequestBody,  // Changer "firstName" en "first_name"
+        @Part("last_name") lastName: RequestBody,    // Changer "lastName" en "last_name"
+        @Part("birth_date") birthDate: RequestBody,  // Changer "birthDate" en "birth_date"
         @Part("status") status: RequestBody,
-        @Part image: MultipartBody.Part
+        @Part image: MultipartBody.Part?
     ): Call<StudentResponse>
 
     @GET("student/{id}/")
@@ -73,12 +73,25 @@ interface ApiService {
     @DELETE("student/{id}/")
     fun deleteStudent(@Path("id") id: Int): Call<Void>
 
+    @Multipart
+    @PUT("student/{id}/")
+    fun updateStudent(
+        @Path("id") id: Int,  // Spécifie l'ID de l'étudiant à mettre à jour
+        @Part("student_id") studentId: RequestBody,
+        @Part("first_name") firstName: RequestBody,
+        @Part("last_name") lastName: RequestBody,
+        @Part("birth_date") birthDate: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part image: MultipartBody.Part?  // Optionnel, seulement si l'image est modifiée
+    ): Call<StudentResponse>
+
+
 
 
     companion object {
         fun create(context: Context): ApiService {
             val retrofit = Retrofit.Builder()
-                .baseUrl("http://100.70.36.208:8000/")  // Remplacez par votre URL API
+                .baseUrl("http://192.168.1.106:8000/")  // Remplacez par votre URL API
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
             return retrofit.create(ApiService::class.java)

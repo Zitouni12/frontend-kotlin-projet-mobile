@@ -45,6 +45,9 @@ class ManageTeacherActivity : AppCompatActivity(), TeacherAdapter.OnItemClickLis
             override fun onResponse(call: Call<List<Teacher>>, response: Response<List<Teacher>>) {
                 if (response.isSuccessful) {
                     val teachers = response.body() ?: emptyList()
+                    teachers.forEach { teacher ->
+                        println("Teacher: ${teacher.nom}, Date Embauche: ${teacher.dateEmbauche}")
+                    }
                     teacherAdapter.updateTeachers(teachers)
                 } else {
                     Toast.makeText(this@ManageTeacherActivity, "Erreur lors de la récupération des enseignants", Toast.LENGTH_SHORT).show()

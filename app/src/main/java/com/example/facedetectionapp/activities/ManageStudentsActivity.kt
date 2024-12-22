@@ -40,7 +40,7 @@ class ManageStudentsActivity : AppCompatActivity() {
         Log.d("ManageStudentsActivity", "onCreate called")
 
         // Vérifiez les permissions
-        checkPermissions()
+       // checkPermissions()
 
         // Initialize views
         rvStudents = findViewById(R.id.rvStudents)
@@ -62,11 +62,11 @@ class ManageStudentsActivity : AppCompatActivity() {
     }
 
     // Vérifiez les permissions de stockage
-    private fun checkPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 101)
-        }
-    }
+    //private fun checkPermissions() {
+     //   if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+       //     ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 101)
+       // }
+   // }
 
     // Gère la réponse de la demande de permission
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
