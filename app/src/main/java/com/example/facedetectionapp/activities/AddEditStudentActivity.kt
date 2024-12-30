@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.facedetectionapp.api.ApiService
 import com.example.facedetectionapp.api.RetrofitClient
 import com.example.facedetectionapp.models.Student
+import com.example.facedetectionapp.activities.ManageStudentsActivity
 import com.example.facedetectionapp.models.StudentResponse
 import com.example.facedetectionapp.utils.FileUtils
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -89,6 +90,7 @@ class AddEditStudentActivity : AppCompatActivity() {
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             selectedImageUri = data?.data
             Glide.with(this).load(selectedImageUri).into(imgStudentPreview)
+
         }
     }
 
@@ -155,6 +157,10 @@ class AddEditStudentActivity : AppCompatActivity() {
             override fun onResponse(call: Call<StudentResponse>, response: Response<StudentResponse>) {
                 if (response.isSuccessful) {
                     Toast.makeText(this@AddEditStudentActivity, "Student saved successfully", Toast.LENGTH_SHORT).show()
+
+                    // Return to the main activity and update the students list
+                    val resultIntent = Intent()
+                    setResult(Activity.RESULT_OK, resultIntent)
                     finish() // Go back to previous activity
                 } else {
                     Toast.makeText(this@AddEditStudentActivity, "Failed to save student", Toast.LENGTH_SHORT).show()

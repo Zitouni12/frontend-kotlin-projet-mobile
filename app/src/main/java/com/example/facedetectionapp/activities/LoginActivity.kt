@@ -51,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
                             sharedPreferences.edit().apply {
                                 putString("jwt_token", loginResponse.access)
                                 putString("role", loginResponse.role)
+                                //putString("student_id", loginResponse.studentId)  // Ajouter studentId
                                 apply()
                             }
 
@@ -73,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
                                 "Etudiant" -> startActivity(
                                     Intent(
                                         this@LoginActivity,
-                                        StudentDashboardActivity::class.java
+                                        StudentDashboardActivity ::class.java
                                     )
                                 )
 

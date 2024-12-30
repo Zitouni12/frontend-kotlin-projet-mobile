@@ -13,11 +13,13 @@ import com.example.facedetectionapp.models.Teacher
 import com.example.facedetectionapp.models.Student
 import retrofit2.http.Body
 import android.content.Context
+import com.example.facedetectionapp.models.Absence
 import com.example.facedetectionapp.models.StudentResponse
 import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.DELETE
+import retrofit2.http.Header
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
@@ -84,6 +86,19 @@ interface ApiService {
         @Part("status") status: RequestBody,
         @Part image: MultipartBody.Part?  // Optionnel, seulement si l'image est modifiée
     ): Call<StudentResponse>
+
+
+    // Récupérer le profil de l'étudiant
+    @GET("student/student/profile/")
+    fun getStudentProfile(
+        @Header("Authorization") authorization: String
+    ): Call<Student>
+
+    // Récupérer les absences de l'étudiant
+    @GET("student/student/absences/")
+    fun getStudentAbsences(
+        @Header("Authorization") authorization: String
+    ): Call<List<Absence>>
 
 
 

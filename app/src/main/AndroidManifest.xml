@@ -87,6 +87,23 @@
             android:exported="true">
         </activity>
 
+        <activity
+            android:name=".activities.StudentDashboardActivity">
+
+        </activity>
+
+        <activity
+            android:name=".activities.StudentAbsencesActivity">
+
+        </activity>
+
+        <activity
+            android:name=".activities.StudentProfileActivity">
+
+        </activity>
+
+
+
     </application>
 
 </manifest>

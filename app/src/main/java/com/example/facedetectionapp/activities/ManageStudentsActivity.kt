@@ -61,12 +61,7 @@ class ManageStudentsActivity : AppCompatActivity() {
         }
     }
 
-    // Vérifiez les permissions de stockage
-    //private fun checkPermissions() {
-     //   if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-       //     ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 101)
-       // }
-   // }
+
 
     // Gère la réponse de la demande de permission
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -115,6 +110,7 @@ class ManageStudentsActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val students = response.body() ?: emptyList()
                     Log.d("ManageStudentsActivity", "Students loaded: $students")
+                    // Mettre à jour ton adaptateur avec la nouvelle liste d'étudiants
                     studentAdapter.setStudents(students)
                 } else {
                     Log.e("ManageStudentsActivity", "Failed to load students: ${response.errorBody()}")
